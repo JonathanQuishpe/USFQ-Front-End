@@ -33,18 +33,20 @@ function sendEmail(id) {
   <div class="container">
     <header-v />
     <div class="row">
-      <div class="col-md-4">
-        <div class="input-group">
-          <input type="text" class="form-control" name="document" placeholder="Identificación" autocomplete="off"
-            v-model="document">
-          <button v-if="!loading && document.length > 2" type="button" class="btn btn-primary" @click="updateItems">
-            <v-icon name="co-search" />
-          </button>
-          <button v-if="loading" type="button" class="btn btn-primary">
-            <v-icon name="co-codacy" animation="spin-pulse" />
-          </button>
+      <form @submit.prevent="updateItems">
+        <div class="col-md-4">
+          <div class="input-group">
+            <input type="text" class="form-control" name="document" placeholder="Identificación" autocomplete="off"
+              v-model="document">
+            <button v-if="!loading && document.length > 2" type="submit" class="btn btn-primary">
+              <v-icon name="co-search" />
+            </button>
+            <button v-if="loading" type="button" class="btn btn-primary">
+              <v-icon name="co-codacy" animation="spin-pulse" />
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
     <table-data :items="items" @send-email="sendEmail" />
   </div>
