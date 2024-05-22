@@ -6,9 +6,9 @@ const api = axios.create({
 });
 
 export const getUsers = async (id) => {
-  return api.get(`/Student/${id}`);
+  return api.get(`/student/${id}`);
 };
 
-export const sendEmail = async () => {
-  return api.post(`/email`);
+export const sendEmail = async (data) => {
+  return api.post(`/receiveEmail`, data);
 };

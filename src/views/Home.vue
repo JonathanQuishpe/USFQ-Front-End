@@ -30,9 +30,12 @@ async function updateItems() {
 }
 async function handleClickOnEmail() {
   emailLoading.value = true;
-  await sendEmail()
+  await sendEmail(
+    { email: 'andres.quishpe@nextisolutions.com' }
+  )
     .then((res) => {
       const { data } = res;
+      console.log(data);
       emailLoading.value = false;
       Swal.fire('¡Aviso!', data, 'success');
     })
