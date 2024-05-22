@@ -35,7 +35,6 @@ async function handleClickOnEmail() {
   )
     .then((res) => {
       const { data } = res;
-      console.log(data);
       emailLoading.value = false;
       Swal.fire('¡Aviso!', data, 'success');
     })
@@ -50,8 +49,9 @@ function resetSearch() {
 }
 function randomEmail() {
   const emails = ['scordova@usfq.edu.ec', 'andres.quishpe@nextisolutions.com'];
-  const randomIndex = Math.floor(Math.random() * emails.length);
-  return emails[randomIndex];
+  const index = document.value == '00112787' ? 0 : 1;
+  console.log(index);
+  return emails[index];
 }
 </script>
 
