@@ -31,7 +31,7 @@ async function updateItems() {
 async function handleClickOnEmail() {
   emailLoading.value = true;
   await sendEmail(
-    { email: 'andres.quishpe@nextisolutions.com' }
+    { email: randomEmail() }
   )
     .then((res) => {
       const { data } = res;
@@ -47,6 +47,11 @@ async function handleClickOnEmail() {
 function resetSearch() {
   item.value = null;
   document.value = '';
+}
+function randomEmail() {
+  const emails = ['scordova@usfq.edu.ec', 'andres.quishpe@nextisolutions.com'];
+  const randomIndex = Math.floor(Math.random() * emails.length);
+  return emails[randomIndex];
 }
 </script>
 
