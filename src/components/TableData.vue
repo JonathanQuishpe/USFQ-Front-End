@@ -2,10 +2,13 @@
 import { defineEmits } from 'vue';
 
 const props = defineProps({
-  items: {
-    type: Array,
+  item: {
+    type: Object,
+  },
+  loading: {
+    type: Boolean,
     required: true
-  }
+  },
 });
 
 
@@ -15,47 +18,48 @@ const emit = (eventName, ...args) => emits(eventName, ...args);
 
 <template>
   <div class="row mt-4">
-    <div class="col-md-12" v-if="items.length">
+    <div class="col-md-12" v-if="item">
       <h4>
         Datos del estudiante
       </h4>
     </div>
     <div class="col-md-12 table-responsive">
-      <table class="table table-striped" v-if="items.length">
+      <table class="table table-striped" v-if="item">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Age</th>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo electrónico</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index) in items" :key="index">
+          <tr>
             <th scope="row">
-              {{ index + 1 }}
+              {{ item.banner_id }}
             </th>
             <td>
-              {{ item.name }}
+              {{ item.nombre_completo }}
             </td>
             <td>
-              {{ item.last_name }}
+              {{ item.correo_usfq }}
             </td>
             <td>
-              {{ item.age }}
-            </td>
-            <td>
-              <button class="btn btn-primary" @click="emit('send-email', item.id)">
+              <button v-if="!loading" class="btn btn-primary" @click="emit('send-email', item.banner_id)">
                 <v-icon name="md-email" />
+              </button>
+              <button v-if="loading" type="button" class="btn btn-primary" disabled>
+                <v-icon name="co-codacy" animation="spin-pulse" />
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="alert alert-danger" role="alert" v-if="!items.length">
-      No existen registros
+    <div class="col-md-12" v-if="!item">
+      <div class="alert alert-primary" role="alert">
+        No existen registros
+      </div>
     </div>
   </div>
 </template>

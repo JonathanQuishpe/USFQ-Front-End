@@ -2,15 +2,13 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com'
+  baseURL: process.env.VUE_APP_API_URL
 });
 
-export const getUsers = async () => {
-  return api.get('/users');
-  /*try {
-    const response = await api.get('/users');
-    return response.data;
-  } catch (error) {
-    throw new Error('Error al obtener usuarios');
-  }*/
+export const getUsers = async (id) => {
+  return api.get(`/Student/${id}`);
+};
+
+export const sendEmail = async () => {
+  return api.post(`/email`);
 };
